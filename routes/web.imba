@@ -2,6 +2,7 @@ import { App } from '../resources/views/app'
 import { Request } from '@formidablejs/framework'
 import { Route } from '@formidablejs/framework'
 import { view } from '@formidablejs/framework'
+const { DB } = require('@formidablejs/framework')
 
 # --------------------------------------------------------------------------
 # Web Routes
@@ -15,4 +16,5 @@ Route.get '/*', do(request\Request) view(App, {
 	formidableVersion: request.version,
 	nodeVersion: process.version,
 	ssr_url: request.url()
+	users: await DB.table('users')
 })

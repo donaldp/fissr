@@ -1,5 +1,6 @@
 import { Request } from '@formidablejs/framework'
 import { Route } from '@formidablejs/framework'
+const { DB } = require('@formidablejs/framework')
 
 # --------------------------------------------------------------------------
 # API Routes
@@ -12,3 +13,7 @@ import { Route } from '@formidablejs/framework'
 Route.get('/user', do(request\Request)
 	request.auth!.user!
 ).middleware(['auth'])
+
+Route.get('/users', do(request\Request)
+	await DB.table('users')
+)

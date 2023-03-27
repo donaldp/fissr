@@ -1,21 +1,12 @@
 import { config } from '@formidablejs/framework'
 import { View } from '@formidablejs/framework'
 import { Props } from '@formidablejs/view'
+const { SSR } = require('../frontend/SSR')
 
 export class App < View
-
-	def initSSR
-		const { SSR } = require('../frontend/SSR')
-
-		return tag Main
-			def render
-				<self>
-					<script type="module" src="../frontend/main.imba">
-
-					<SSR>
-
 	def render
 		const locale = get('locale', config('app.locale', new String)).replace(/_/g, '-')
+		const users = get('users')
 
 		<html lang=locale>
 			<head>
@@ -27,4 +18,5 @@ export class App < View
 				<style src="*">
 
 			<body>
-				<initSSR()>
+				<script type="module" src="../frontend/main.imba">
+				<div#app> <SSR html:ssr_users=JSON.stringify(users)>

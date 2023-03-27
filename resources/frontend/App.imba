@@ -1,17 +1,12 @@
 # import { FormProgress } from '@formidablejs/view'
 # import { Welcome } from './pages/Welcome'
 import '../css/app.css'
-
-# export tag App
-# 	def render
-# 		<self>
-# 			<FormProgress observeUrl>
-
-# 			<Welcome route="/">
 import { Users } from './pages/Users'
 
 export tag InnerApp
+	prop users
 
 	def render
 		<self>
-			<Users route='/'>
+			<p> 'running in the browser'
+			<Users users=users route='/'>
