@@ -26,28 +26,31 @@ This file is loaded by the `resources/views/app.imba` file as `initSSR`.
 
 ```imba
 export tag Users
-	prop users = []
+    prop users = []
 
-	prop counter = 0
+    prop counter = 0
 
-	def render
-		<self>
-			if $node$
-				console.log 'running in the server'
+    def render
+        <self>
+            # this works
+            if $node$
+                console.log 'running in the server'
 
-				const { DB } = require('@formidablejs/framework')
+                const { DB } = require('@formidablejs/framework')
 
-				const results = await DB.table('users')
+                const results = await DB.table('users')
 
-				users = results
+                users = results
 
-				console.log users
+                console.log users
 
-			<button @click=counter++> "Clicked {counter} times"
+            <button @click=counter++> "Clicked {counter} times"
 
-			<h1> "Users"
+            <h1> "Users"
 
-			for user in users
-				<p> user.name
+            # but this doens't :(
+
+            for user in users
+                <p> user.name
 
 ```
